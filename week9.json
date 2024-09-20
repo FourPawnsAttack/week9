@@ -1,26 +1,68 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 420,
+  "width": 450,
   "height": 600,
   "projection": {
     "type": "mercator",
     "center": [150, -18],
-    "scale": 2000,
+    "scale": 2100,
     "translate": [300, 300]
   },
   "layer": [
     {
       "data": {
-        "url": "au-states-topo.json",
+        "url": "oceanland.json",
         "format": {
           "type": "topojson",
-          "feature": "austates"
+          "feature": "ne_50m_land"
         }
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#dddddd",
+        "fill": "#8B4513",
         "stroke": "black"
+      }
+    },
+    {
+      "data": {
+        "url": "oceanland.json",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_50m_ocean"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#ADD8E6",
+        "stroke": "black"
+      }
+    },    
+    {
+      "data": {
+        "url": "gbr.json",
+        "format": {
+          "type": "topojson",
+          "feature": "greatbarrierreef"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#FFDDDD",
+        "stroke": "black"
+      }
+    },
+    {
+      "data": {
+        "url": "graticules_5.json",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_50m_graticules_5"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#808080",  
+        "stroke": "rgba(0, 0, 0, 0.5)"  
       }
     },
     {
