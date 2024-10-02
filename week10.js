@@ -74,7 +74,7 @@ const week10 = {
       },
       {
         "data": {
-          "url": "Unique_Reefs_for_2020-2023.csv",
+          "url": "manta-tow-by-reef.csv",
           "format": {
             "type": "csv"
           }
