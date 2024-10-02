@@ -147,17 +147,24 @@ const week10 = {
   "height": 550,
   "projection": {
     "type": "mercator",
-    "center": [
-      149,
-      -18
-    ],
+    "center": [149, -18],
     "scale": 2100,
-    "translate": [
-      300,
-      300
-    ]
+    "translate": [300, 300]
   },
   "title": "Live Coral Cover in the Great Barrier Reef (1997-2023)",
+  "params": [
+    {
+      "name": "yearSelector",
+      "value": 2023,
+      "bind": {
+        "input": "range",
+        "min": 1997,
+        "max": 2023,
+        "step": 1,
+        "name": "Select Year"
+      }
+    }
+  ],
   "layer": [
     {
       "data": {
@@ -217,14 +224,12 @@ const week10 = {
     },
     {
       "data": {
-        "url": "Unique_Reefs_for_2020-2023.csv",
-        "format": {
-          "type": "csv"
-        }
+        "url": "manta-tow-by-reef.csv",
+        "format": { "type": "csv" }
       },
       "transform": [
         {
-          "filter": "datum.REPORT_YEAR >= 1997 && datum.REPORT_YEAR <= 2023"
+          "filter": "datum.REPORT_YEAR == yearSelector"
         },
         {
           "calculate": "datum.MEAN_LIVE_CORAL <= 20 ? '0-20%' : datum.MEAN_LIVE_CORAL <= 40 ? '20-40%' : datum.MEAN_LIVE_CORAL <= 60 ? '40-60%' : datum.MEAN_LIVE_CORAL <= 80 ? '60-80%' : '80-100%'",
@@ -236,51 +241,22 @@ const week10 = {
         "tooltip": true
       },
       "encoding": {
-        "longitude": {
-          "field": "LONGITUDE",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "LATITUDE",
-          "type": "quantitative"
-        },
+        "longitude": { "field": "LONGITUDE", "type": "quantitative" },
+        "latitude": { "field": "LATITUDE", "type": "quantitative" },
         "color": {
           "field": "Live_Coral_Category",
           "type": "nominal",
           "title": "Live Coral Category",
           "scale": {
-            "domain": [
-              "0-20%",
-              "20-40%",
-              "40-60%",
-              "60-80%",
-              "80-100%"
-            ],
-            "range": [
-              "#d7191c",
-              "#fdae61",
-              "#ffffbf",
-              "#a6d96a",
-              "#1a9641"
-            ]
+            "domain": ["0-20%", "20-40%", "40-60%", "60-80%", "80-100%"],
+            "range": ["#d7191c", "#fdae61", "#ffffbf", "#a6d96a", "#1a9641"]
           }
         },
-        "size": {
-          "value": 50
-        },
+        "size": { "value": 50 },
         "tooltip": [
-          {
-            "field": "REEF_NAME",
-            "title": "Reef Name"
-          },
-          {
-            "field": "MEAN_LIVE_CORAL",
-            "title": "Mean Live Coral (%)"
-          },
-          {
-            "field": "REPORT_YEAR",
-            "title": "Reported Year"
-          }
+          { "field": "REEF_NAME", "title": "Reef Name" },
+          { "field": "MEAN_LIVE_CORAL", "title": "Mean Live Coral (%)" },
+          { "field": "REPORT_YEAR", "title": "Reported Year" }
         ]
       }
     }
