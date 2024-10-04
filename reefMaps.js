@@ -247,7 +247,8 @@ const week10 = {
           },
           {
             "field": "MEAN_LIVE_CORAL",
-            "title": "Mean Live Coral (%)"
+            "title": "Mean Live Coral (%)",
+            "format": ".1f"  
           },
           {
             "field": "REPORT_YEAR",
