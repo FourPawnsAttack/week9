@@ -102,24 +102,22 @@
   </div> <!-- end page -->
 
   <script type="text/javascript">
-    // Assuming week9 and week10 are defined in the external reefMaps.js script
-    // Make sure reefMaps.js contains properly defined Vega-Lite specifications like week9 and week10
-      var specVis1 = week9;
-      var specVis2 = week10;
-  
-      vegaEmbed('#vis1', specVis1, { "actions": false });
-  
-      vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
-        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-      }).catch(console.error);
-  
-      vegaEmbed('#vis3', specVis1, { "actions": false }).then(function (result) {
-        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-      }).catch(console.error);
-  
-      vegaEmbed('#vis4', specVis2, { "actions": false }).then(function (result) {
-        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-      }).catch(console.error);
+    var specVis1 = "vis/week9.json";
+    var specVis2 = "vis/week10.json";
+
+    vegaEmbed('#vis1', specVis1, { "actions": false });
+
+    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis3', specVis1, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', specVis2, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
   </script>
 </body>
 
