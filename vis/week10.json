@@ -1,12 +1,12 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 650,
-    "height": 550,
+    "width": 400,
+    "height": 300,
     "projection": {
       "type": "mercator",
       "center": [149, -18],
-      "scale": 2100,
-      "translate": [300, 300]
+      "scale": 1100,
+      "translate": [140, 170]
     },
     "title": "Live Coral Cover in the Great Barrier Reef in the 2020s",
     "layer": [
