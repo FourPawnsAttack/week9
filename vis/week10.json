@@ -92,6 +92,10 @@
                 "#a6d96a",
                 "#1a9641"
               ]
+            },
+            "legend": {
+              "direction": "horizontal",
+              "orient": "bottom"
             }
           },
           "size": {
