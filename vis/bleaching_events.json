@@ -1,0 +1,67 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://gist.githubusercontent.com/FourPawnsAttack/52050f1506d1c26954864f877008d3c4/raw/75ed12dd309f5222e4be0a5080592a037df97ef4/coral-bleaching-events.csv"
+    },
+    "width": 780,
+    "height": 300,
+    "title": "Number of bleaching events across the world",
+    "transform": [
+      {
+        "fold": [
+          "Moderate bleaching events (1-30% bleached)", 
+          "Severe bleaching events (>30% bleached)"
+        ],
+        "as": ["Bleaching Event Type", "Count"]
+      },
+      {
+        "filter": "datum.Entity == entitySelection"
+      }
+    ],
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "field": "Year",
+        "type": "ordinal",
+        "title": "Year"
+      },
+      "y": {
+        "aggregate": "sum",
+        "field": "Count",
+        "type": "quantitative",
+        "title": "Number of Bleaching Events"
+      },
+      "color": {
+        "field": "Bleaching Event Type",
+        "type": "nominal",
+        "scale": {
+          "domain": [
+            "Moderate bleaching events (1-30% bleached)", 
+            "Severe bleaching events (>30% bleached)"
+          ],
+          "range": ["yellow", "red"]
+        },
+        "title": "Bleaching Severity",
+        "legend": { "direction": "horizontal", "orient": "bottom" }
+      },
+      "tooltip": [
+        {"field": "Year", "type": "ordinal"},
+        {"field": "Bleaching Event Type", "type": "nominal"},
+        {"field": "Count", "type": "quantitative"}
+      ]
+    },
+    "params": [
+      {
+        "name": "entitySelection",
+        "bind": {
+          "input": "select",
+          "options": [
+            "Australasia", "Indian Ocean/Middle East", "Pacific", "West Atlantic", "World"
+          ],
+          "name": "Region: "
+        },
+        "value": "Australasia"
+      }
+    ]
+  }
+  

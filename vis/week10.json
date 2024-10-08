@@ -1,178 +1,186 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 400,
-    "height": 300,
-    "projection": {
-      "type": "mercator",
-      "center": [149, -18],
-      "scale": 1100,
-      "translate": [140, 170]
-    },
-    "title": "Live Coral Cover in the Great Barrier Reef in the 2020s",
-    "layer": [
-      {
-        "data": {
-          "url": "https://gist.githubusercontent.com/FourPawnsAttack/f0e6309882faf688167e72ee0134b879/raw/cd353b8ba1b779de313d0d6680ddff9255495369/oceanland.json",
-          "format": {"type": "topojson", "feature": "ne_50m_land"}
-        },
-        "mark": {"type": "geoshape", "fill": "#DDA15E", "stroke": "black"}
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "hconcat": [
+    {
+      "width": 400,
+      "height": 300,
+      "projection": {
+        "type": "mercator",
+        "center": [149, -18],
+        "scale": 1100,
+        "translate": [140, 170]
       },
-      {
-        "data": {
-          "url": "https://gist.githubusercontent.com/FourPawnsAttack/f0e6309882faf688167e72ee0134b879/raw/cd353b8ba1b779de313d0d6680ddff9255495369/oceanland.json",
-          "format": {"type": "topojson", "feature": "ne_50m_ocean"}
-        },
-        "mark": {"type": "geoshape", "fill": "#ADD8E6", "stroke": "black"}
-      },
-      {
-        "data": {
-          "url": "https://gist.githubusercontent.com/FourPawnsAttack/25d8c03bc4129671cb1108b7a22efdde/raw/c724b331d716870a037ffa4ad7a21edc6a415057/ne_10m_geography_marine_polys.json",
-          "format": {
-            "type": "topojson",
-            "feature": "ne_10m_geography_marine_polys"
-          }
-        },
-        "mark": {
-          "type": "geoshape",
-          "fill": "#6495ED",
-          "stroke": "rgba(0, 0, 0, 0.5)"
-        }
-      },
-      {
-        "data": {
-          "url": "https://gist.githubusercontent.com/FourPawnsAttack/ab098a644250f8775ae6d3988b16e5d8/raw/5305c3ad0b75854823c94e5c68a9dcfee5733974/graticules_5.json",
-          "format": {"type": "topojson", "feature": "ne_50m_graticules_5"}
-        },
-        "mark": {
-          "type": "geoshape",
-          "fill": "#808080",
-          "stroke": "rgba(0, 0, 0, 0.5)"
-        }
-      },
-      {
-        "data": {
-          "url": "https://gist.githubusercontent.com/FourPawnsAttack/75828f0d94c8d8a58db16f6b9ae44621/raw/d16d0879ed3a7e0a68fe1dca34f40dcd6c9d0635/manta-tow-by-reef.csv",
-          "format": {"type": "csv"}
-        },
-        "transform": [
-          {
-            "calculate": "datum.MEAN_LIVE_CORAL <= 20 ? '0-20%' : datum.MEAN_LIVE_CORAL <= 40 ? '20-40%' : datum.MEAN_LIVE_CORAL <= 60 ? '40-60%' : datum.MEAN_LIVE_CORAL <= 80 ? '60-80%' : '80-100%'",
-            "as": "Live_Coral_Category"
+      "title": "Live Coral Cover in the Great Barrier Reef",
+      "layer": [
+        {
+          "data": {
+            "url": "https://gist.githubusercontent.com/FourPawnsAttack/f0e6309882faf688167e72ee0134b879/raw/cd353b8ba1b779de313d0d6680ddff9255495369/oceanland.json",
+            "format": { "type": "topojson", "feature": "ne_50m_land" }
           },
-          {
-            "filter": "yearSelection == null || datum.REPORT_YEAR == yearSelection"
-          }
-        ],
-        "mark": {"type": "circle", "tooltip": true},
-        "encoding": {
-          "longitude": {
-            "field": "LONGITUDE",
-            "type": "quantitative"
+          "mark": { "type": "geoshape", "fill": "#DDA15E", "stroke": "black" }
+        },
+        {
+          "data": {
+            "url": "https://gist.githubusercontent.com/FourPawnsAttack/f0e6309882faf688167e72ee0134b879/raw/cd353b8ba1b779de313d0d6680ddff9255495369/oceanland.json",
+            "format": { "type": "topojson", "feature": "ne_50m_ocean" }
           },
-          "latitude": {
-            "field": "LATITUDE",
-            "type": "quantitative"
+          "mark": { "type": "geoshape", "fill": "#ADD8E6", "stroke": "black" }
+        },
+        {
+          "data": {
+            "url": "https://gist.githubusercontent.com/FourPawnsAttack/25d8c03bc4129671cb1108b7a22efdde/raw/c724b331d716870a037ffa4ad7a21edc6a415057/ne_10m_geography_marine_polys.json",
+            "format": { "type": "topojson", "feature": "ne_10m_geography_marine_polys" }
           },
-          "color": {
-            "field": "Live_Coral_Category",
-            "type": "nominal",
-            "title": "Live Coral Category",
-            "scale": {
-              "domain": [
-                "0-20%",
-                "20-40%",
-                "40-60%",
-                "60-80%",
-                "80-100%"
-              ],
-              "range": [
-                "#d7191c",
-                "#fdae61",
-                "#ffffbf",
-                "#a6d96a",
-                "#1a9641"
-              ]
+          "mark": { "type": "geoshape", "fill": "#6495ED", "stroke": "rgba(0, 0, 0, 0.5)" }
+        },
+        {
+          "data": {
+            "url": "https://gist.githubusercontent.com/FourPawnsAttack/ab098a644250f8775ae6d3988b16e5d8/raw/5305c3ad0b75854823c94e5c68a9dcfee5733974/graticules_5.json",
+            "format": { "type": "topojson", "feature": "ne_50m_graticules_5" }
+          },
+          "mark": { "type": "geoshape", "fill": "#808080", "stroke": "rgba(0, 0, 0, 0.5)" }
+        },
+        {
+          "data": {
+            "url": "https://gist.githubusercontent.com/FourPawnsAttack/75828f0d94c8d8a58db16f6b9ae44621/raw/d16d0879ed3a7e0a68fe1dca34f40dcd6c9d0635/manta-tow-by-reef.csv",
+            "format": { "type": "csv" }
+          },
+          "transform": [
+            {
+              "calculate": "datum.MEAN_LIVE_CORAL <= 20 ? '0-20%' : datum.MEAN_LIVE_CORAL <= 40 ? '20-40%' : datum.MEAN_LIVE_CORAL <= 60 ? '40-60%' : datum.MEAN_LIVE_CORAL <= 80 ? '60-80%' : '80-100%'",
+              "as": "Live_Coral_Category"
             },
-            "legend": {
-              "direction": "horizontal",
-              "orient": "bottom"
+            {
+              "filter": "yearSelection == null || datum.REPORT_YEAR == yearSelection"
             }
-          },
-          "size": {
-            "value": 50
-          },
-          "tooltip": [
-            {
-              "field": "REEF_NAME",
-              "title": "Reef Name"
+          ],
+          "mark": { "type": "circle", "tooltip": true },
+          "encoding": {
+            "longitude": { "field": "LONGITUDE", "type": "quantitative" },
+            "latitude": { "field": "LATITUDE", "type": "quantitative" },
+            "color": {
+              "field": "Live_Coral_Category",
+              "type": "nominal",
+              "title": "Live Coral Category",
+              "scale": {
+                "domain": ["0-20%", "20-40%", "40-60%", "60-80%", "80-100%"],
+                "range": ["#d7191c", "#fdae61", "#ffffbf", "#a6d96a", "#1a9641"]
+              },
+              "legend": { "direction": "horizontal", "orient": "bottom" }
             },
-            {
-              "field": "MEAN_LIVE_CORAL",
-              "title": "Mean Live Coral (%)",
-              "format": ".1f"  
-            },
-            {
-              "field": "REPORT_YEAR",
-              "title": "Reported Year"
-            }
-          ]
-        }
-      },
-      {
-        "data": {
-          "url": "https://gist.githubusercontent.com/FourPawnsAttack/75828f0d94c8d8a58db16f6b9ae44621/raw/d16d0879ed3a7e0a68fe1dca34f40dcd6c9d0635/manta-tow-by-reef.csv",
-          "format": {"type": "csv"}
-        },
-        "transform": [
-          {
-            "filter": "yearSelection == null || datum.REPORT_YEAR == yearSelection"
-          },
-          {
-            "joinaggregate": [
-              {"op": "min", "field": "MEAN_LIVE_CORAL", "as": "min_coral"}
+            "size": { "value": 50 },
+            "tooltip": [
+              { "field": "REEF_NAME", "title": "Reef Name" },
+              { "field": "MEAN_LIVE_CORAL", "title": "Mean Live Coral (%)", "format": ".1f" },
+              { "field": "REPORT_YEAR", "title": "Reported Year" }
             ]
-          },
-          {
-            "filter": "datum.MEAN_LIVE_CORAL == datum.min_coral"
-          },
-          {
-            "calculate": "datum.REEF_NAME + ' ;has the lowest live coral cover(' + datum.MEAN_LIVE_CORAL + '%) in ;' + datum.REPORT_YEAR",
-            "as": "text_label_raw"
-          },    
-          {
-            "calculate": "split(datum.text_label_raw, ';')",
-            "as": "text_label"
           }
-        ],
-        "mark": {
-          "type": "text",
-          "align": "left",
-          "dx": 10,
-          "dy": -5,
-          "fontSize": 12,
-          "color": "red",
-          "fontStyle": "italic"
         },
-        "encoding": {
-          "longitude": {"field": "LONGITUDE", "type": "quantitative"},
-          "latitude": {"field": "LATITUDE", "type": "quantitative"},
-          "text": {"field": "text_label"}
+        {
+          "data": {
+            "url": "https://gist.githubusercontent.com/FourPawnsAttack/75828f0d94c8d8a58db16f6b9ae44621/raw/d16d0879ed3a7e0a68fe1dca34f40dcd6c9d0635/manta-tow-by-reef.csv",
+            "format": { "type": "csv" }
+          },
+          "transform": [
+            { "filter": "yearSelection == null || datum.REPORT_YEAR == yearSelection" },
+            {
+              "joinaggregate": [{ "op": "min", "field": "MEAN_LIVE_CORAL", "as": "min_coral" }]
+            },
+            { "filter": "datum.MEAN_LIVE_CORAL == datum.min_coral" },
+            {
+              "calculate": "datum.REEF_NAME + ' has the lowest live coral cover (' + datum.MEAN_LIVE_CORAL + '%) in ' + datum.REPORT_YEAR",
+              "as": "text_label"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 10,
+            "dy": -5,
+            "fontSize": 12,
+            "color": "red",
+            "fontStyle": "italic"
+          },
+          "encoding": {
+            "longitude": { "field": "LONGITUDE", "type": "quantitative" },
+            "latitude": { "field": "LATITUDE", "type": "quantitative" },
+            "text": { "field": "text_label" }
+          }
         }
-      }
-      
-    ],
-    "params": [
-      {
-        "name": "yearSelection",
-        "bind": {
-          "input": "range",
-          "min": 1993,
-          "max": 2022,
-          "step": 1,
-          "name": "Reported Year"
+      ],
+      "params": [
+        {
+          "name": "yearSelection",
+          "bind": {
+            "input": "range",
+            "min": 1993,
+            "max": 2022,
+            "step": 1,
+            "name": "Reported Year"
+          },
+          "value": 2022
+        }
+      ]
+    },
+    {
+      "width": 360,
+      "height": 300,
+      "data": {
+        "url": "https://gist.githubusercontent.com/FourPawnsAttack/75828f0d94c8d8a58db16f6b9ae44621/raw/d16d0879ed3a7e0a68fe1dca34f40dcd6c9d0635/manta-tow-by-reef.csv",
+        "format": { "type": "csv" }
+      },
+      "transform": [
+        {
+          "calculate": "datum.MEAN_LIVE_CORAL <= 20 ? '0-20%' : datum.MEAN_LIVE_CORAL <= 40 ? '20-40%' : datum.MEAN_LIVE_CORAL <= 60 ? '40-60%' : datum.MEAN_LIVE_CORAL <= 80 ? '60-80%' : '80-100%'",
+          "as": "Live_Coral_Category"
         },
-        "value": 2022
-      }
-    ]
-  }
-  
+        {
+          "filter": "yearSelection == null || datum.REPORT_YEAR == yearSelection"
+        }
+      ],
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "Live_Coral_Category",
+          "type": "nominal",
+          "title": "Live Coral Category",
+          "sort": ["0-20%", "20-40%", "40-60%", "60-80%", "80-100%"],
+          "axis": {
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "title": "Count",
+          "scale": {
+            "domain": [0, 70] 
+          }
+        },
+        "color": {
+          "field": "Live_Coral_Category",
+          "type": "nominal",
+          "scale": {
+            "domain": ["0-20%", "20-40%", "40-60%", "60-80%", "80-100%"],
+            "range": ["#d7191c", "#fdae61", "#ffffbf", "#a6d96a", "#1a9641"]
+          },
+          "legend": null
+        }
+      },
+      "title": "Distribution of Live Coral Categories"
+    }
+  ],
+  "params": [
+    {
+      "name": "yearSelection",
+      "bind": {
+        "input": "range",
+        "min": 1993,
+        "max": 2022,
+        "step": 1,
+        "name": "Reported Year"
+      },
+      "value": 2022
+    }
+  ]
+}

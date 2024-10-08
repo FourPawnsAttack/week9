@@ -1,0 +1,100 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 365,
+    "height": 300,
+    "title": "Sea Surface Temperature in the Great Barrier Reef",
+    "description": "Multi-series Line Chart with Halo, Regression Trend Line, and Coral Bleaching Threshold.",
+    "data": {
+      "url": "https://gist.githubusercontent.com/FourPawnsAttack/5546d7c3db8693bd8485054cc2be5bab/raw/0afb2b85829eab2349bdfa1ee771e8b377f9149f/gistfile1.txt",
+      "format": {
+        "type": "csv"
+      }
+    },
+    "transform": [
+      {
+        "filter": "datum['SST@90th_HS'] != null && datum['DHW_from_90th_HS>1'] != null"
+      }
+    ],
+    "repeat": {
+      "layer": ["SST@90th_HS"]
+    },
+    "spec": {
+      "layer": [
+        {
+          "mark": { "type": "line", "stroke": "blue", "strokeWidth": 1 },
+          "encoding": {
+            "x": { "field": "Date", "type": "temporal","title":"", "axis":{
+                "grid":false
+            }},
+            "y": {
+              "field": { "repeat": "layer" },
+              "type": "quantitative",
+              "title": "Temperature (°C)",
+              "scale": { "domain": [24.5, 33] }
+            }
+          }
+        },
+        {
+          "mark": { "type": "line", "strokeWidth": 2 },
+          "transform": [
+            {
+              "regression": "SST@90th_HS",
+              "on": "Date",
+              "method": "linear",
+              "as": ["Date", "trend"]
+            },
+            {
+              "calculate": "'Trendline'",
+              "as": "lineType"
+            }
+          ],
+          "encoding": {
+            "x": { "field": "Date", "type": "temporal" },
+            "y": { "field": "trend", "type": "quantitative" },
+            "color": {
+              "field": "lineType",
+              "type": "nominal",
+              "scale": {
+                "domain": ["Trendline", "Coral Bleaching Threshold"],
+                "range": ["red", "black"]
+              },
+              "legend": { "title": "Lines" ,"direction": "horizontal", "orient": "bottom" }
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "strokeDash": [6, 3],
+            "strokeWidth": 2
+          },
+          "transform": [
+            {
+              "calculate": "29.5",
+              "as": "Coral Bleaching Threshold"
+            },
+            {
+              "calculate": "'Coral Bleaching Threshold'",
+              "as": "lineType"
+            }
+          ],
+          "encoding": {
+            "y": { "field": "Coral Bleaching Threshold", "type": "quantitative" },
+            "color": {
+              "field": "lineType",
+              "type": "nominal",
+              "scale": {
+                "domain": ["Trendline", "Coral Bleaching Threshold"],
+                "range": ["red", "black"]
+              },
+              "legend": null 
+            }
+          }
+        }
+      ],
+      "resolve": {
+        "scale": { "y": "shared" }
+      }
+    }
+  }
+  
