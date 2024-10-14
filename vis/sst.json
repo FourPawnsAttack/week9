@@ -58,7 +58,7 @@
                 "domain": ["Trendline", "Coral Bleaching Threshold"],
                 "range": ["red", "black"]
               },
-              "legend": { "title": "Lines" ,"direction": "horizontal", "orient": "bottom" }
+              "legend": { "title": "Lines" ,"direction": "horizontal", "orient": "top" }
             }
           }
         },

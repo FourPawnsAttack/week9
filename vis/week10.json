@@ -88,7 +88,11 @@
             },
             { "filter": "datum.MEAN_LIVE_CORAL == datum.min_coral" },
             {
-              "calculate": "datum.REEF_NAME + ' has the lowest live coral cover (' + datum.MEAN_LIVE_CORAL + '%) in ' + datum.REPORT_YEAR",
+              "calculate": "datum.REEF_NAME + '; has the lowest live coral cover ;(' + datum.MEAN_LIVE_CORAL + '%) in ' + datum.REPORT_YEAR",
+              "as": "text_label_raw"
+            },
+            {
+              "calculate": "split(datum.text_label_raw, ';')",
               "as": "text_label"
             }
           ],
