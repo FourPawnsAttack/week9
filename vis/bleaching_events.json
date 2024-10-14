@@ -23,7 +23,8 @@
       "x": {
         "field": "Year",
         "type": "ordinal",
-        "title": "Year"
+        "title": "Year",
+        "axis": {"labelAngle": -45 }
       },
       "y": {
         "aggregate": "sum",
@@ -39,7 +40,7 @@
             "Moderate bleaching events (1-30% bleached)", 
             "Severe bleaching events (>30% bleached)"
           ],
-          "range": ["yellow", "red"]
+          "range": ["#ffeda0", "#f03b20"]
         },
         "title": "Bleaching Severity",
         "legend": { "direction": "horizontal", "orient": "bottom" }

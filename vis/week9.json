@@ -108,7 +108,7 @@
             },
             "legend": {
               "direction": "horizontal",
-              "orient": "bottom"
+              "orient": "top"
             }
           },
           "size": {

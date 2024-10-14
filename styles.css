@@ -77,7 +77,7 @@ body {
   }
 
   .main-content {
-    background-color: #DBE2EF; /* Light gray background */
+    background-color: #FFFFFF; /* Light gray background */
     padding: 20px; /* Add some padding for better appearance */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow for depth */
   }
