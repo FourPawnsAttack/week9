@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 365,
-    "height": 300,
+    "height": 400,
     "title": "Sea Surface Temperature in the Great Barrier Reef",
     "description": "Multi-series Line Chart with Halo, Regression Trend Line, and Coral Bleaching Threshold.",
     "data": {

@@ -2,8 +2,8 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Area chart of DHW_from_90th_HS>1 over time.",
   "width": 365,
-  "height": 330,
-  "title": "Degree Heating Weeks in the Great Barrier Reef",
+  "height": 440,
+  "title": "Degree Heating Weeks (DHW) in the Great Barrier Reef",
   "data": {
     "url": "https://gist.githubusercontent.com/FourPawnsAttack/5546d7c3db8693bd8485054cc2be5bab/raw/0afb2b85829eab2349bdfa1ee771e8b377f9149f/gistfile1.txt",
     "format": {
@@ -29,12 +29,13 @@
     "x": {
       "field": "Date",
       "type": "temporal",
-      "axis": { "grid": false }
+      "axis": { "grid": false },
+      "title": ""
     },
     "y": {
       "field": "DHW_from_90th_HS>1",
       "type": "quantitative",
-      "title": "DHW from 90th HS > 1"
+      "title": "Number of DHWs"
     },
     "color": {
       "field": "color",
